@@ -20,6 +20,7 @@ export default class Calculator extends Component {
 
 constructor(props) {
     super(props)
+
     this.clearMemory = this.clearMemory.bind(this)
     this.setOperation = this.setOperation.bind(this)
     this.addDigit = this.addDigit.bind(this)
@@ -28,7 +29,7 @@ constructor(props) {
 
 
     clearMemory() {
-        this.setState({ ...initialState})
+        this.setState({ ...initialState })
     }
 
     setOperation(operation) {
@@ -62,12 +63,13 @@ constructor(props) {
             return
         }
     
-        const clearDisplay = this.state.displayValue === '0' || this.state.clearDisplay
+        const clearDisplay = this.state.displayValue === '0' 
+        || this.state.clearDisplay
         const currentValue = clearDisplay ? '' : this.state.displayValue
         const displayValue = currentValue + n
         this.setState({displayValue, clearDisplay: false})
     
-        if (n === '.') {
+        if (n !== '.') {
             const i = this.state.current
             const newValue = parseFloat(displayValue)
             const values = [...this.state.values]
